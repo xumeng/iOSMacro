@@ -9,6 +9,9 @@
 #ifndef iOSMacro_iOSMacro_h
 #define iOSMacro_iOSMacro_h
 
+//  显示网络运行状态
+#define showNetworkActivityIndicator(flag){[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:flag];}
+
 //  Path about Sandbox
 #define PATH_OF_APP_HOME    NSHomeDirectory()
 #define PATH_OF_TEMP        NSTemporaryDirectory()
@@ -132,6 +135,9 @@ fprintf(stderr,"---------------\n");\
 #define SYSTEMFONT(FONTSIZE)    [UIFont systemFontOfSize:FONTSIZE]
 #define FONT(NAME, FONTSIZE)    [UIFont fontWithName:(NAME) size:(FONTSIZE)]
 
+//  计算字符串高宽
+#define TEXTRECT(text, constraintSize, font) [text boundingRectWithSize:constraintSize options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font } context:nil]
+
 //  颜色(RGB)
 #define RGBCOLOR(r, g, b)       [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define RGBACOLOR(r, g, b, a)   [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
@@ -142,6 +148,12 @@ fprintf(stderr,"---------------\n");\
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 \
 alpha:1.0]
+
+//  RGB颜色+透明度
+#define UIColorFromRGBA(rgbValue, alphaValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:alphaValue]
+
+//  随机颜色
+#define UIColorRandom [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
 
 
 //  View 圆角和加边框并裁剪子视图
