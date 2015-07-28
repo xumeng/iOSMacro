@@ -1,4 +1,4 @@
-//
+//  iOS通用宏
 //  iOSMacro.h
 //  iOSMacro
 //
